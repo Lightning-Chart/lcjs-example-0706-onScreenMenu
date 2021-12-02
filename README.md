@@ -59,7 +59,7 @@ chart.addOnScreenMenu(
         [
           // cusrom button
           {
-                icon: document.head.baseURI + 'examples/assets/lcjs_example_9999_osm-icon.png',
+                icon: document.head.baseURI + 'examples/assets/9999/icon.png',
                 dimensions: { rows: 1, columns: 1 },
                 label: '',
                 opacity: '0.8',
@@ -99,7 +99,7 @@ chart.addOnScreenMenu(
         ],
         [
           {
-              icon: document.head.baseURI + 'examples/assets/lcjs_example_9999_osm-icon.png',
+              icon: document.head.baseURI + 'examples/assets/9999/icon.png',
               dimensions: { rows: 1, columns: 1 },
               opacity: '0.8',
               color: 'blue',

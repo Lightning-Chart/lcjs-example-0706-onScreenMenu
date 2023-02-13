@@ -1,6 +1,6 @@
 # JavaScript On Screen Menu
 
-![JavaScript On Screen Menu](osm.png)
+![JavaScript On Screen Menu](osm-darkGold.png)
 
 This demo application belongs to the set of examples for LightningChart JS, data visualization library for JavaScript.
 
@@ -8,27 +8,25 @@ LightningChart JS is entirely GPU accelerated and performance optimized charting
 
 The demo can be used as an example or a seed project. Local execution requires the following steps:
 
-- Make sure that relevant version of [Node.js](https://nodejs.org/en/download/) is installed
-- Open the project folder in a terminal:
+-   Make sure that relevant version of [Node.js](https://nodejs.org/en/download/) is installed
+-   Open the project folder in a terminal:
 
-        npm install              # fetches dependencies
-        npm start                # builds an application and starts the development server
+          npm install              # fetches dependencies
+          npm start                # builds an application and starts the development server
 
-- The application is available at *http://localhost:8080* in your browser, webpack-dev-server provides hot reload functionality.
+-   The application is available at _http://localhost:8080_ in your browser, webpack-dev-server provides hot reload functionality.
 
 
 ## Description
 
 Example showcasing the use of On Screen Menu.
 
-On-Screen Menu (OSM) is part of UI that can be used to simplify interaction with charts. 
+On-Screen Menu (OSM) is part of UI that can be used to simplify interaction with charts.
 In this case the default buttons are used along with a custom button that shows/hides the intersection points of lines.
-
 
 The On-Screen menu can be added this way:
 
 ```javascript
-
 const chart = lightningChart().ChartXY()
 
 chart.addOnScreenMenu(
@@ -45,32 +43,27 @@ chart.addOnScreenMenu(
     ],
     OnScreenMenuButtonShape.RoundedRectangle,
 )
-
 ```
 
 To add a custom button parameters must be defined.
 
 ```javascript
-
 const chart = lightningChart().ChartXY()
 
-chart.addOnScreenMenu(
+chart.addOnScreenMenu([
     [
-        [
-          // cusrom button
-          {
-                icon: document.head.baseURI + 'examples/assets/9999/icon.png',
-                dimensions: { rows: 1, columns: 1 },
-                label: '',
-                opacity: '0.8',
-                color: 'blue',
-                shape: OnScreenMenuButtonShape.RoundedRectangle,
-                action: show,
-            },
-        ],
+        // cusrom button
+        {
+            icon: document.head.baseURI + 'examples/assets/9999/icon.png',
+            dimensions: { rows: 1, columns: 1 },
+            label: '',
+            opacity: '0.8',
+            color: 'blue',
+            shape: OnScreenMenuButtonShape.RoundedRectangle,
+            action: show,
+        },
     ],
-)
-
+])
 ```
 
 'addOnScreenMenu' takes an array of arrays as a parameter.
@@ -78,50 +71,39 @@ Each sub array adds a new line on the OSM menu.
 
 ![](./assets/OSM.png)
 
-
 ```javascript
-
 const chart = lightningChart().ChartXY()
 
-chart.addOnScreenMenu(
+chart.addOnScreenMenu([
     [
-        [
-            OnScreenMenuButtonType.ZoomInX,
-            OnScreenMenuButtonType.ZoomOutX,
-            OnScreenMenuButtonType.ZoomInY,
-            OnScreenMenuButtonType.ZoomOutY,
-            OnScreenMenuButtonType.ZoomIn,
-            OnScreenMenuButtonType.ZoomOut,
-        ],
-        [
-            OnScreenMenuButtonType.ZoomToFit,
-            OnScreenMenuButtonType.ToggleAnimations,
-        ],
-        [
-          {
-              icon: document.head.baseURI + 'examples/assets/9999/icon.png',
-              dimensions: { rows: 1, columns: 1 },
-              opacity: '0.8',
-              color: 'blue',
-              shape: OnScreenMenuButtonShape.RoundedRectangle,
-              action: show,
-          },
-        ],
+        OnScreenMenuButtonType.ZoomInX,
+        OnScreenMenuButtonType.ZoomOutX,
+        OnScreenMenuButtonType.ZoomInY,
+        OnScreenMenuButtonType.ZoomOutY,
+        OnScreenMenuButtonType.ZoomIn,
+        OnScreenMenuButtonType.ZoomOut,
     ],
-)
-
+    [OnScreenMenuButtonType.ZoomToFit, OnScreenMenuButtonType.ToggleAnimations],
+    [
+        {
+            icon: document.head.baseURI + 'examples/assets/9999/icon.png',
+            dimensions: { rows: 1, columns: 1 },
+            opacity: '0.8',
+            color: 'blue',
+            shape: OnScreenMenuButtonShape.RoundedRectangle,
+            action: show,
+        },
+    ],
+])
 ```
-
 
 Formula of lines intersection
 
 ![](./assets/formula.png)
 
-
 ```javascript
-
 function calculateIntersection(currPoint1, prevPoint1, currPoint2, prevPoint2) {
-       // Expressions of numerator
+    // Expressions of numerator
     const exp1 = currPoint1.x * prevPoint1.y - currPoint1.y * prevPoint1.x // (x1 * y2 - y1 * x2)
     const exp2 = currPoint2.x * prevPoint2.y - currPoint2.y * prevPoint2.x // (x3 * y4 - y3 * x4)
 
@@ -138,7 +120,7 @@ function calculateIntersection(currPoint1, prevPoint1, currPoint2, prevPoint2) {
     if (d === 0) {
         throw new Error('Number of intersection points is zero or infinity.')
     }
-    
+
     const px = (exp1 * exp3 - exp4 * exp2) / d
     const py = (exp1 * exp5 - exp6 * exp2) / d
 
@@ -148,6 +130,7 @@ function calculateIntersection(currPoint1, prevPoint1, currPoint2, prevPoint2) {
     return p
 }
 ```
+
 
 ## API Links
 
@@ -160,24 +143,24 @@ function calculateIntersection(currPoint1, prevPoint1, currPoint2, prevPoint2) {
 
 If you notice an error in the example code, please open an issue on [GitHub][0] repository of the entire example.
 
-Official [API documentation][1] can be found on [Arction][2] website.
+Official [API documentation][1] can be found on [LightningChart][2] website.
 
 If the docs and other materials do not solve your problem as well as implementation help is needed, ask on [StackOverflow][3] (tagged lightningchart).
 
-If you think you found a bug in the LightningChart JavaScript library, please contact support@arction.com.
+If you think you found a bug in the LightningChart JavaScript library, please contact support@lightningchart.com.
 
-Direct developer email support can be purchased through a [Support Plan][4] or by contacting sales@arction.com.
+Direct developer email support can be purchased through a [Support Plan][4] or by contacting sales@lightningchart.com.
 
 [0]: https://github.com/Arction/
-[1]: https://www.arction.com/lightningchart-js-api-documentation/
-[2]: https://www.arction.com
+[1]: https://lightningchart.com/lightningchart-js-api-documentation/
+[2]: https://lightningchart.com
 [3]: https://stackoverflow.com/questions/tagged/lightningchart
-[4]: https://www.arction.com/support-services/
+[4]: https://lightningchart.com/support-services/
 
-© Arction Ltd 2009-2020. All rights reserved.
+© LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[Point Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.4.0/classes/pointseries.html
-[Line Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.4.0/classes/lineseries.html
-[On Screen Menu]: https://www.arction.com/lightningchart-js-api-documentation/v3.4.0/chartxy.html#addonscreenmenu
+[Point Series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/PointSeries.html
+[Line Series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/LineSeries.html
+[On Screen Menu]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/ChartXY.html#addOnScreenMenu
 

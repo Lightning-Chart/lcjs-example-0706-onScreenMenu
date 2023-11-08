@@ -8,11 +8,11 @@ const lcjs = require('@arction/lcjs')
 const xydata = require('@arction/xydata')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, OnScreenMenuButtonType, OnScreenMenuButtonShape, Themes, ColorRGBA, ColorHEX, SolidFill, PointShape, SolidLine } =
-    lcjs
+const { lightningChart, OnScreenMenuButtonType, OnScreenMenuButtonShape, ColorRGBA, SolidFill, PointShape, SolidLine, Themes } = lcjs
 
 const { createProgressiveTraceGenerator, createProgressiveRandomGenerator } = xydata
 
+// NOTE: Using `Dashboard` is no longer recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
 const dashboard = lightningChart().Dashboard({
     numberOfColumns: 1,
     numberOfRows: 3,
@@ -27,13 +27,15 @@ const chart = dashboard.createChartXY({
     rowSpan: 2,
 })
 
+const axisX = chart.getDefaultAxisX().setInterval({
+    start: 0,
+    end: 100,
+})
+
 // Add Zoom Band Chart to bottom Cell in Dashboard.
 const zoomBandChart = dashboard.createZoomBandChart({
     columnIndex: 0,
-    columnSpan: 1,
     rowIndex: 2,
-    rowSpan: 1,
-    axis: chart.getDefaultAxisX(),
 })
 
 // Add LineSeries to the XY Chart.
@@ -53,6 +55,10 @@ const point = chart
     .addPointSeries({ pointShape: PointShape.Circle })
     .setPointFillStyle(new SolidFill({ color: ColorRGBA(180, 180, 180) }))
     .setPointSize(10)
+
+zoomBandChart.add(line)
+zoomBandChart.add(line2)
+zoomBandChart.add(point)
 
 // Array that keeps data of 1st line series
 const arr1 = []
@@ -82,8 +88,16 @@ createProgressiveRandomGenerator()
     .forEach((point) => {
         const y = point.y * (Math.random() * 20) - 10
         line2.add({ x: point.x, y })
-        // check intesection of line series
+        // check intersection of line series
         getIntersection({ x: point.x, y })
+
+        if (point.x > 50 && point.x < 200) {
+            const oldInterval = axisX.getInterval()
+            axisX.setInterval({
+                start: oldInterval.start + 1,
+                end: oldInterval.end + 1,
+            })
+        }
     })
 
 // Add On-Screen menu

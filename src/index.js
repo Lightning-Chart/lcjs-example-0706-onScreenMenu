@@ -16,7 +16,7 @@ const { createProgressiveTraceGenerator, createProgressiveRandomGenerator } = xy
 const dashboard = lightningChart().Dashboard({
     numberOfColumns: 1,
     numberOfRows: 3,
-    // theme: Themes.darkGold
+    theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
 })
 
 // Add XY Chart to top Cell in Dashboard.

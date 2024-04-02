@@ -54,7 +54,7 @@ chart.addOnScreenMenu([
     [
         // cusrom button
         {
-            icon: document.head.baseURI + 'examples/assets/9999/icon.png',
+            icon: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'examples/assets/9999/icon.png',
             dimensions: { rows: 1, columns: 1 },
             label: '',
             opacity: '0.8',
@@ -86,7 +86,7 @@ chart.addOnScreenMenu([
     [OnScreenMenuButtonType.ZoomToFit, OnScreenMenuButtonType.ToggleAnimations],
     [
         {
-            icon: document.head.baseURI + 'examples/assets/9999/icon.png',
+            icon: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'examples/assets/9999/icon.png',
             dimensions: { rows: 1, columns: 1 },
             opacity: '0.8',
             color: 'blue',

@@ -13,7 +13,9 @@ const { lightningChart, OnScreenMenuButtonType, OnScreenMenuButtonShape, ColorRG
 const { createProgressiveTraceGenerator, createProgressiveRandomGenerator } = xydata
 
 // NOTE: Using `Dashboard` is no longer recommended for new applications. Find latest recommendations here: https://lightningchart.com/js-charts/docs/basic-topics/grouping-charts/
-const dashboard = lightningChart().Dashboard({
+const dashboard = lightningChart({
+            resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
+        }).Dashboard({
     numberOfColumns: 1,
     numberOfRows: 3,
     theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,

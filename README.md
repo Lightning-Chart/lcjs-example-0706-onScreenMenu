@@ -160,7 +160,7 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[Point Series]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/classes/PointSeries.html
-[Line Series]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/classes/LineSeries.html
-[On Screen Menu]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/classes/ChartXY.html#addOnScreenMenu
+[Point Series]: https://lightningchart.com/js-charts/api-documentation/v6.0.0/classes/PointSeries.html
+[Line Series]: https://lightningchart.com/js-charts/api-documentation/v6.0.0/classes/LineSeries.html
+[On Screen Menu]: https://lightningchart.com/js-charts/api-documentation/v6.0.0/classes/ChartXY.html#addOnScreenMenu
 

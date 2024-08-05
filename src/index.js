@@ -2,13 +2,24 @@
  * LightningChartJS example for rendering a 'Mesh Circle'.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Import xydata
-const xydata = require('@arction/xydata')
+const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, OnScreenMenuButtonType, OnScreenMenuButtonShape, ColorRGBA, SolidFill, PointShape, SolidLine, Themes } = lcjs
+const {
+    lightningChart,
+    OnScreenMenuButtonType,
+    OnScreenMenuButtonShape,
+    ColorRGBA,
+    SolidFill,
+    PointShape,
+    SolidLine,
+    Themes,
+    emptyFill,
+    emptyLine,
+} = lcjs
 
 const { createProgressiveTraceGenerator, createProgressiveRandomGenerator } = xydata
 
@@ -22,12 +33,14 @@ const dashboard = lightningChart({
 })
 
 // Add XY Chart to top Cell in Dashboard.
-const chart = dashboard.createChartXY({
-    columnIndex: 0,
-    columnSpan: 1,
-    rowIndex: 0,
-    rowSpan: 2,
-})
+const chart = dashboard
+    .createChartXY({
+        columnIndex: 0,
+        columnSpan: 1,
+        rowIndex: 0,
+        rowSpan: 2,
+    })
+    .setCursorMode('show-all-interpolated')
 
 const axisX = chart.getDefaultAxisX().setInterval({
     start: 0,
@@ -41,7 +54,7 @@ const zoomBandChart = dashboard.createZoomBandChart({
 })
 
 // Add LineSeries to the XY Chart.
-const line = chart.addLineSeries()
+const line = chart.addPointLineAreaSeries({ dataPattern: 'ProgressiveX' }).setAreaFillStyle(emptyFill)
 
 // Styles for 2nd LineSeries
 const customStrokeStyle = new SolidLine({
@@ -50,11 +63,13 @@ const customStrokeStyle = new SolidLine({
 })
 
 // Add 2nd LineSeries to the XY Chart.
-const line2 = chart.addLineSeries().setStrokeStyle(customStrokeStyle)
+const line2 = chart.addPointLineAreaSeries({ dataPattern: 'ProgressiveX' }).setAreaFillStyle(emptyFill).setStrokeStyle(customStrokeStyle)
 
 // Add PointSeries to the XY Chart.
 const point = chart
-    .addPointSeries({ pointShape: PointShape.Circle })
+    .addPointLineAreaSeries({ dataPattern: 'ProgressiveX' })
+    .setAreaFillStyle(emptyFill)
+    .setStrokeStyle(emptyLine)
     .setPointFillStyle(new SolidFill({ color: ColorRGBA(180, 180, 180) }))
     .setPointSize(10)
 

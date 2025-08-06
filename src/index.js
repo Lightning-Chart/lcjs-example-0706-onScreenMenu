@@ -39,6 +39,7 @@ const chart = dashboard
         columnSpan: 1,
         rowIndex: 0,
         rowSpan: 2,
+        legend: { visible: false },
     })
     .setCursorMode('show-all-interpolated')
 
@@ -54,7 +55,7 @@ const zoomBandChart = dashboard.createZoomBandChart({
 })
 
 // Add LineSeries to the XY Chart.
-const line = chart.addPointLineAreaSeries({ dataPattern: 'ProgressiveX' }).setAreaFillStyle(emptyFill)
+const line = chart.addLineSeries()
 
 // Styles for 2nd LineSeries
 const customStrokeStyle = new SolidLine({
@@ -63,13 +64,11 @@ const customStrokeStyle = new SolidLine({
 })
 
 // Add 2nd LineSeries to the XY Chart.
-const line2 = chart.addPointLineAreaSeries({ dataPattern: 'ProgressiveX' }).setAreaFillStyle(emptyFill).setStrokeStyle(customStrokeStyle)
+const line2 = chart.addLineSeries({}).setStrokeStyle(customStrokeStyle)
 
 // Add PointSeries to the XY Chart.
 const point = chart
-    .addPointLineAreaSeries({ dataPattern: 'ProgressiveX' })
-    .setAreaFillStyle(emptyFill)
-    .setStrokeStyle(emptyLine)
+    .addPointSeries({})
     .setPointFillStyle(new SolidFill({ color: ColorRGBA(180, 180, 180) }))
     .setPointSize(10)
 
@@ -91,7 +90,7 @@ createProgressiveTraceGenerator()
     .toPromise()
     .then((data) => {
         arr1.push(...data)
-        line.add(data)
+        line.appendJSON(data)
     })
 
 // Stream some random data.
@@ -104,7 +103,7 @@ createProgressiveRandomGenerator()
     .toStream()
     .forEach((point) => {
         const y = point.y * (Math.random() * 20) - 10
-        line2.add({ x: point.x, y })
+        line2.appendSample({ x: point.x, y })
         // check intersection of line series
         getIntersection({ x: point.x, y })
 
@@ -163,7 +162,7 @@ function getIntersection(currPoint) {
         ) {
             // Find point of intersection
             const interSectionPoint = calculateIntersection(currPoint, prevPoint, arr1[index], arr1[index - 1])
-            point.add(interSectionPoint)
+            point.appendSample(interSectionPoint)
         }
         // Reassign curr point as prev. point
         prevPoint = currPoint

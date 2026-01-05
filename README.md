@@ -69,7 +69,7 @@ chart.addOnScreenMenu([
 'addOnScreenMenu' takes an array of arrays as a parameter.
 Each sub array adds a new line on the OSM menu.
 
-![](./assets/OSM.png)
+![OSM](./assets/OSM.png)
 
 ```javascript
 const chart = lightningChart().ChartXY()
@@ -99,7 +99,7 @@ chart.addOnScreenMenu([
 
 Formula of lines intersection
 
-![](./assets/formula.png)
+![Formula](./assets/formula.png)
 
 ```javascript
 function calculateIntersection(currPoint1, prevPoint1, currPoint2, prevPoint2) {
